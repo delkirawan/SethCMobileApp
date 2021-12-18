@@ -5,9 +5,13 @@ class AppUrl {
   static const String findPlacesModel = cApiUrl + "/find_places_model";
   static const String placeInput = cApiUrl + "/place_input";
   static const String getCertificates = cApiUrl + "/get_certificates";
+  static const String getProfile = cApiUrl + "/get_profile";
   static const String certAplaces = cApiUrl + "/cert_aplaces";
   static const String findAplaces = cApiUrl + "/find_aplaces";
   static const String historyA = cApiUrl + "/history_a";
+  static const String deleteCertificate = cApiUrl + "/delete_cert";
+  static const String editProfile = cApiUrl + "/edit_profile";
+
 
   static const String bApiUrl = "http://192.168.100.9:8000/b_web";
   static const String qr = bApiUrl + "/receive_qr";  

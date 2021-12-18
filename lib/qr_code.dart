@@ -146,6 +146,8 @@ class _qr_codeState extends State<qr_code> {
       if (this.status==-1){
         User user = Provider.of<UserProvider>(context, listen: false).user;
         Map<String, dynamic> data = {"user_id": user.nik};
+        print(data);
+        print(user);
         hitApiUs(user, AppUrl.qr, data);
         print('Sent data to B QR ${AppUrl.qr}');
       }

@@ -22,6 +22,7 @@ class User {
   
   User.minimal({this.nik, this.username, this.password});
   
+  
 
   factory User.fromJson(Map<String, dynamic> responseData) {
     return User(

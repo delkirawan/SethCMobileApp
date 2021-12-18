@@ -428,6 +428,9 @@ class _PlaceState extends State<Place> {
     } else if (index == 2) {
       Navigator.push(
           context, new MaterialPageRoute(builder: (context) => new info_rs()));
+    } else if(index == 4){
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => new info_rs()));
     }
     print("selectedFab: $index");
     setState(() {
@@ -440,7 +443,7 @@ class _PlaceState extends State<Place> {
       Icons.place,
       Icons.article,
       Icons.local_hospital,
-      Icons.history
+      Icons.history,
     ];
     return AnchoredOverlay(
       showOverlay: true,

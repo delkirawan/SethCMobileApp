@@ -39,6 +39,7 @@ class _LoginState extends State<Login> {
     final usernameField = TextFormField(
       autofocus: false,
       // validator: validateEmail,
+      onChanged: (value) => _username = value,
       onSaved: (value) => _username = value,
       decoration: buildInputDecoration("Input username", Icons.person_search),
     );
@@ -47,6 +48,7 @@ class _LoginState extends State<Login> {
       autofocus: false,
       obscureText: true,
       // validator: (value) => value.isEmpty ? "Please enter password" : null,
+      onChanged: (value) => _password = value,
       onSaved: (value) => _password = value,
       decoration: buildInputDecoration("Confirm password", Icons.lock),
     );
@@ -79,19 +81,22 @@ class _LoginState extends State<Login> {
         ),
       ],
     );
-    var doLogin = () {
-      User user = new User(
-        username: "cuser0",
-        nik: "30919873421",
-        email: "cuser0",
-        name: 'Bayu Setiawan',
-        id: 1,
-        phone: '+620123',
-        password: "123450",
-      );
-      Provider.of<UserProvider>(context, listen: false).setUser(user);
-      Navigator.pushReplacementNamed(context, '/dashboard');
-    };
+
+
+    // var doLogin = () {
+    //   User user = new User(
+    //     username: "cuser0",
+    //     nik: "30919873421",
+    //     email: "cuser0",
+    //     name: 'Bayu Setiawan',
+    //     id: 1,
+    //     phone: '+620123',
+    //     password: "123450",
+    //   );
+    //   Provider.of<UserProvider>(context, listen: false).setUser(user);
+    //   Navigator.pushReplacementNamed(context, '/dashboard');
+    // };
+
 
 //       final form = formKey.currentState;
 
@@ -120,32 +125,36 @@ class _LoginState extends State<Login> {
 //     };
 //   }
 // }
-//     final form = formKey.currentState;
-//     form.save();
 
-//     if (_username==""){
-//       _username = "cuser0";
-//       _password = "123450";
-//     }
+  var doLogin = (){
+    // final form = formKey.currentState;
+    // if (form.validate()) {
+    //   form.save();
 
-//     final Future<Map<String, dynamic>> successfulMessage = auth.login(_username, _password);
+      // if (_username==""){
+      //   _username = "cuser0";
+      //   _password = "123450";
+      // }
 
-//       successfulMessage.then((response) {
-//         print("response: $response");
-//         if (response['status']) {
-//           print(response);
-//           User user = response['user'];
-//           Provider.of<UserProvider>(context, listen: false).setUser(user);
-//           Navigator.pushReplacementNamed(context, '/dashboard');
-//         } else {
-//           Flushbar(
-//             title: "Failed Login",
-//             message: response['message'].toString(),
-//             duration: Duration(seconds: 3),
-//           ).show(context);
-//         }
-//       });
-//     };
+      final Future<Map<String, dynamic>> successfulMessage = auth.login(_username, _password);
+
+        successfulMessage.then((response) {
+          print("response: $response");
+          if (response['status']) {
+            print(response);
+            User user = response['user'];
+            Provider.of<UserProvider>(context, listen: false).setUser(user);
+            Navigator.pushReplacementNamed(context, '/dashboard');
+          } else {
+            Flushbar(
+              title: "Failed Login",
+              message: response['message'].toString(),
+              duration: Duration(seconds: 3),
+            ).show(context);
+          }
+        });
+    
+    };
 
     return Container(
       child: Scaffold(
@@ -186,4 +195,7 @@ class _LoginState extends State<Login> {
         ),
       );
   }
+  
 }
+
+

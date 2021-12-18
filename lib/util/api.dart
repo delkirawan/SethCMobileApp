@@ -35,3 +35,35 @@ Future<Map<String, dynamic>> hitApi(String url, Map<String, dynamic> data) async
     final Map<String, dynamic> responseData = json.decode(response.body);
     return responseData;
 }
+
+Future<Map<String, dynamic>> hitApiGet(String url, Map<String, dynamic> queryParams) async {
+    final urlWithQueryParams = Uri.parse('$url')
+      .replace(queryParameters: queryParams);
+
+    Response response = await get(urlWithQueryParams);
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+    return responseData;
+}
+
+Future<Map<String, dynamic>> hitApiDelete(String url, Map<String, dynamic> body) async {
+    final request = Request('DELETE', Uri.parse(url));
+    request.body = json.encode(body);
+
+    StreamedResponse response = await request.send();
+
+    String responseStr = await response.stream.bytesToString();
+
+    final Map<String, dynamic> responseData = json.decode(responseStr);
+    return responseData;
+}
+
+Future<Map<String, dynamic>> hitAPIPatch(String url, Map<String, dynamic> data) async {
+    Response response = await patch(
+      url,
+      body: json.encode(data),
+    );
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+    return responseData;
+}
